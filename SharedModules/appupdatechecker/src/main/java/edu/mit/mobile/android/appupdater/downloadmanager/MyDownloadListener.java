@@ -72,7 +72,12 @@ public class MyDownloadListener {
             Cursor cursor = mContext.getContentResolver().query(uri, null, null, null, null);
             try {
                 if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                   int displayNameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (displayNameIndex >= 0) {
+                        String displayName = cursor.getString(displayNameIndex);
+                    } else {
+
+                    }
                 }
             } finally {
                 cursor.close();
